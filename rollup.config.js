@@ -14,8 +14,8 @@ export default {
         external(),
         babel({
             exclude: 'node_modules/**'
-        }),
-        del({ targets: ['dist/*'] }),
+        })//,
+       // del({ targets: ['dist/*'] }),
     ],
     external: Object.keys(pkg.peerDependencies || {}),
 };
