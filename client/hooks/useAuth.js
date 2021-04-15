@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
-import { isLoggedIn } from '../../server/utils'
-import { getUser } from '../utils/authUtil'
+import { getUser, isLoggedIn } from '../utils/authUtil'
 import useLogin from './useLogin'
 import useLogout from './useLogout/index.js'
 import useRegister from './useRegister'
@@ -12,6 +11,8 @@ const useAuth = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState()
     const [alreadyExist, setAlreadyExist] = useState(false)
+    const [wrongPassword, setWrongPassword] = useState(false)
+
     const [user, setUser] = useState()
 
     const history = useHistory()
@@ -39,8 +40,8 @@ const useAuth = () => {
         onError: (error) => {
             setError(error)
         },
-        onAlreadyExists: () => {
-            setAlreadyExist(true)
+        onWrongPassword: () => {
+            setWrongPassword(true)
         }
     })
 
@@ -97,7 +98,8 @@ const useAuth = () => {
         user,
         error,
         //the user Already exists
-        alreadyExist
+        alreadyExist,
+        wrongPassword
     }
 
 }

@@ -4,11 +4,17 @@ import { useHistory } from 'react-router-dom'
 import { IS_LOGGED_IN, LOG_IN } from '../constants/SigninGqlQueries'
 import { signin } from '../utils/authUtil'
 
-const useLogin = ({onLogin,onError}) => {
+const useLogin = ({onLogin,onError,onWrongPassword}) => {
     const history = useHistory()
 
     const [login, { loading }] = useMutation(LOG_IN, {
-        onError: onError,
+        onError: (error) => {
+            if (isErrorCode(error, 9)) {
+                onWrongPassword && onWrongPassword()
+            } else {
+                onError && onError(error)
+            }
+        },
         onCompleted: ({ login }) => {
             const { token, email } = login
             signin(token, email)

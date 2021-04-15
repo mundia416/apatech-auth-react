@@ -1,7 +1,6 @@
 
 import { useMutation } from '@apollo/react-hooks'
-import { LOGOUT } from './constants/GqlQueries'
-import { IS_LOGGED_IN } from '../../constants/SigninGqlQueries'
+import { IS_LOGGED_IN, LOGOUT } from '../../constants/SigninGqlQueries'
 import { HTTP_URL } from '../../utils/url-util'
 import { signout } from '../../utils/authUtil'
 

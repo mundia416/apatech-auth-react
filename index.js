@@ -1,5 +1,6 @@
-const AuthProvider = require("./client/components/auth-provider")
 const useAuth = require("./client/hooks/useAuth")
+const getApolloClient = require("./client/getApolloClient")
+
 
 
 
@@ -22,5 +23,5 @@ module.exports = {
     //the client side api
     useAuth,
     //wrap the components in the src/index file with AuthProvider
-    AuthProvider
+    getApolloClient
 }
