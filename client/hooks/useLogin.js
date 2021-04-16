@@ -2,7 +2,7 @@
 import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
 import { IS_LOGGED_IN, LOG_IN } from '../constants/SigninGqlQueries'
-import { signin } from '../utils/authUtil'
+import { isErrorCode, signin } from '../utils/authUtil'
 
 const useLogin = ({onLogin,onError,onWrongPassword}) => {
     const history = useHistory()
@@ -29,7 +29,8 @@ const useLogin = ({onLogin,onError,onWrongPassword}) => {
         },
     })
 
-    const execute = (email, password) => {
+    const execute = ({email, password}) => {
+    
         login({
             variables: {
                 email: email,
